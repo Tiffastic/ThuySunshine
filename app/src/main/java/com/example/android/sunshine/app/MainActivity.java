@@ -18,21 +18,11 @@ package com.example.android.sunshine.app;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.example.android.sunshine.app.sync.SunshineSyncAdapter;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends ActionBarActivity implements ForecastFragment.Callback {
 
@@ -101,7 +91,7 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
         super.onResume();
         String location = Utility.getPreferredLocation( this );
         // update the location in our second pane using the fragment manager
-            if (location != null && !location.equals(mLocation)) {
+        if (location != null && !location.equals(mLocation)) {
             ForecastFragment ff = (ForecastFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_forecast);
             if ( null != ff ) {
                 ff.onLocationChanged();
@@ -135,45 +125,4 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
             startActivity(intent);
         }
     }
-
-    public static class PlaceHolderFragment extends Fragment
-    {
-        ArrayAdapter<String> mForecastAdapter;
-
-        public PlaceHolderFragment()
-        {
-            //within the fragment cycle
-
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-
-
-            String[] data = { "Mon"
-
-
-            };
-
-
-            List<String> weekForecast = new ArrayList<>(Arrays.asList(data));
-
-            mForecastAdapter = new ArrayAdapter<String>(
-                    getActivity(), // the current context (this activity)
-                    R.layout.list_item_forecast,  // the name of the layout ID
-                    R.id.list_item_forecast_textview,  // the ID of the textiew to populate
-                    weekForecast);
-
-            View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
-
-            // get a reference to the ListView, and attach this adapter to it.
-            ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
-            listView.setAdapter(mForecastAdapter);
-            return rootView;
-        }
-    }
-
-
-
 }
