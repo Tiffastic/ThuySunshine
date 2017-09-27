@@ -94,4 +94,8 @@
     <!-- Strings related to Notification preference -->
     <string name="pref_last_notification">last_notification</string>
 
+    <string name="detail_text">Thuy Sunshine!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_thuysunshine_fragment">Thuy Sunshine Weather Art</string>
 </resources>
